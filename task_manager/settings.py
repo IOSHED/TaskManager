@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'widget_tweaks',
+    'flake8',
 
     'accounts.apps.AccountsConfig'
 ]
@@ -136,10 +137,16 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Linter
+
+TEST_RUNNER = 'flake8.main.Flake8TestRunner'
 
 
 # Default user model
@@ -147,6 +154,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 LOGIN_FORM = 'accounts.forms.CustomAuthenticationForm'
+
 
 # Email config
 
