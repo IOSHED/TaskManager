@@ -5,3 +5,4 @@ repos:
       - id: flake8
         exclude: migrations, venv
         args: [--max-line-length=120]
+
