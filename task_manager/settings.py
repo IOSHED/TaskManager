@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'flake8',
 
     'accounts.apps.AccountsConfig'
+    'task.apps.TaskConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# TODO: replace sqlite to mysql ot other nosql
 
 DATABASES = {
     'default': {
