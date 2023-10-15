@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import CreateUserView, LoginUserView, CheckEmailView, CheckPasswordView, CheckRePasswordView, \
-    CreateInfoUserView, LogoutUserView, DeleteUserView, UpdateUserView, CheckHaveEmailView
+    CreateInfoUserView, LogoutUserView, DeleteUserView, UpdateUserView, CheckHaveEmailView, CheckLoginUser
 
 urlpatterns = [
     path('create-user/', CreateUserView.as_view(), name='create-user'),
@@ -21,6 +21,7 @@ htmx_patterns = [
     path('check-password/', CheckPasswordView.as_view(), name='check-password'),
     path('check-re-password/', CheckRePasswordView.as_view(), name='check-re-password'),
     path('check-have-email/', CheckHaveEmailView.as_view(), name='check-have-email'),
+    path('check-login-user/', CheckLoginUser.as_view(), name='check-login-user')
 ]
 
 urlpatterns += htmx_patterns

@@ -1,9 +1,11 @@
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.views import View
 
 from ..models import CustomUser
 
 # TODO: use regex in 're'
+# TODO: add comments
 
 
 class CheckEmailView(View):
@@ -48,3 +50,13 @@ class CheckRePasswordView(View):
         if password1 == password2:
             return HttpResponse('')
         return HttpResponse('Passwords must match')
+
+
+class CheckLoginUser(View):
+    @staticmethod
+    def post(request):
+        email = request.POST.get('username')
+        raw_password = request.POST.get('password')
+        if authenticate(email=email, password=raw_password) is None:
+            return HttpResponse('Invalid username or password')
+        return HttpResponse('')

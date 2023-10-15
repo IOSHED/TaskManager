@@ -3,6 +3,8 @@ from django import forms
 from .models import CustomUser, CustomGroup, UserRole
 
 
+# TODO: add comments
+
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser

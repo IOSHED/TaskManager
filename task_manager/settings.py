@@ -158,8 +158,9 @@ LOGIN_FORM = 'accounts.forms.CustomAuthenticationForm'
 
 # Email config
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_HOST_USER = 'iosh_taskmanager@mail.ru'
-EMAIL_HOST_PASSWORD = str(os.getenv('PASSWORD_EMAIL'))
-EMAIL_PORT = 587
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.mail.ru'
+# EMAIL_HOST_USER = 'iosh_taskmanager@mail.ru'
+# EMAIL_HOST_PASSWORD = str(os.getenv('PASSWORD_EMAIL'))
+# EMAIL_PORT = 587

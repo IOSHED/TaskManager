@@ -9,6 +9,10 @@ from ..forms import CustomUserCreationForm, CustomAuthenticationForm, InfoUserFo
 from ..models import CustomUser
 
 
+# TODO: add verification email
+# TODO: add comments
+
+
 class CreateUserView(FormView):
     form_class = CustomUserCreationForm
     template_name = 'accounts/registration/register.html'
@@ -29,7 +33,6 @@ class CreateUserView(FormView):
         return redirect('create-info-user', pk=user.id, permanent=True)
 
 
-# TODO: if the user has already logged in, then the lon cannot log in a second time
 class LoginUserView(FormView):
     form_class = CustomAuthenticationForm
     template_name = 'accounts/registration/login.html'
