@@ -3,9 +3,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-# TODO add comments
-
-
 # Define CustomUserManager to handle user creation, validation, and authentication
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):

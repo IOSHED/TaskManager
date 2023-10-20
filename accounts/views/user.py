@@ -9,10 +9,6 @@ from ..forms import CustomUserCreationForm, CustomAuthenticationForm, InfoUserFo
 from ..models import CustomUser
 
 
-# TODO: add verification email
-# TODO: add comments
-
-
 class CreateUserView(FormView):
     form_class = CustomUserCreationForm
     template_name = 'accounts/registration/register.html'

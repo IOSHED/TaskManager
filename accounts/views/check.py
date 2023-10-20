@@ -5,7 +5,6 @@ from django.views import View
 from ..models import CustomUser
 
 # TODO: use regex in 're'
-# TODO: add comments
 
 
 class CheckEmailView(View):
