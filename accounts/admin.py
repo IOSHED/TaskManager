@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, CustomGroup, CustomPermission, UserRole
+from .models import CustomUser
 
 
 class CustomUserAdmin(UserAdmin):
@@ -26,6 +26,3 @@ class CustomUserAdmin(UserAdmin):
 
 # Register models in the admin page
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(CustomGroup)
-admin.site.register(CustomPermission)
-admin.site.register(UserRole)

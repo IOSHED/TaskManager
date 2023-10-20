@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'flake8',
 
-    'accounts.apps.AccountsConfig'
-    'task.apps.TaskConfig'
+    'task.apps.TaskConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [

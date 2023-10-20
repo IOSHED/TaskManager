@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group, Permission
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -57,34 +57,3 @@ class CustomUser(AbstractBaseUser):
 
     def has_module_perms(self, _):
         return self.is_staff
-
-
-# Define CustomGroup model that proxies the built-in Group model
-class CustomGroup(Group):
-    class Meta:
-        # Field 'proxy' allows you to add extra methods or fields to the existing models without
-        # having to redefine all of their built-in functionality.
-        proxy = True
-
-
-# Define CustomPermission model that proxies the built-in Permission model
-class CustomPermission(Permission):
-    class Meta:
-        # Field 'proxy' allows you to add extra methods or fields to the existing models without
-        # having to redefine all of their built-in functionality.
-        proxy = True
-
-
-# Define UserRole model to associate users with groups using ManyToManyField
-class UserRole(models.Model):
-    # Mean 'on_delete=models.CASCADE' it means that if a user or group is deleted,
-    # all User Role objects that reference that user or group will also be deleted (cascaded)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    group = models.ForeignKey(CustomGroup, on_delete=models.CASCADE)
-
-    objects = models.Manager()
-
-    class Meta:
-        # Field 'unique_together' means that a user cannot belong to the same group multiple times,
-        # and a group cannot have the same user multiple times.
-        unique_together = ('user', 'group')
