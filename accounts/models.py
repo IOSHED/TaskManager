@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from .lib.path import user_directory_path
 
 
 # Define CustomUserManager to handle user creation, validation, and authentication
@@ -28,6 +29,9 @@ class CustomUser(AbstractBaseUser):
     email = models.EmailField(_('email address'), unique=True)
     name = models.TextField(max_length=255, null=True)
     surname = models.TextField(max_length=255, null=True)
+
+    icon32 = models.ImageField(upload_to=user_directory_path, default="default/user_icon_32.png")
+    icon64 = models.ImageField(upload_to=user_directory_path, default="default/user_icon_64.png")
 
     birthday_at = models.DateField(null=True)
     create_at = models.DateField(auto_now_add=True)

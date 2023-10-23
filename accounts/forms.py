@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from PIL import Image as PILImage
 from django import forms
 from .models import CustomUser
 
@@ -28,3 +29,17 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'name', 'surname', 'birthday_at')
+
+
+class LoadImageForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('icon64',)
+
+    def clean_image(self):
+        image = self.cleaned_data.get('icon64')
+        img = PILImage.open(image)
+
+        if img.size == (64, 64):
+            return image
+        raise forms.ValidationError('Image must be 64x64')

@@ -4,25 +4,27 @@ from .models import CustomUser
 
 
 class CustomUserAdmin(UserAdmin):
-    model = CustomUser
-    list_display = ('email', 'name', 'surname', 'birthday_at', 'is_staff')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'is_email_verification')
+    list_display = (
+        'email', 'name', 'surname', 'birthday_at', 'is_active', 'is_staff', 'is_superuser', 'is_email_verification'
+    )
+    search_fields = ('email', 'name', 'surname')
+    ordering = ('email',)
+    filter_horizontal = ()
+    list_filter = ('is_active', 'is_staff', 'is_superuser', 'is_email_verification')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('name', 'surname', 'birthday_at')}),
+        ('Personal Info', {'fields': ('name', 'surname', 'birthday_at')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'is_email_verification')}),
-        ('Important dates', {'fields': ('last_login',)}),
+        ('Icons', {'fields': ('icon_32', 'icon_128')}),
+        ('Important dates', {'fields': ('last_login', 'create_at', 'update_at')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'name', 'surname', 'birthday_at'),
+            'fields': ('email', 'name', 'surname', 'birthday_at', 'password1', 'password2'),
         }),
     )
-    search_fields = ('email',)
-    ordering = ('email',)
-    filter_horizontal = ()
+    readonly_fields = ('create_at', 'update_at')
 
 
-# Register models in the admin page
 admin.site.register(CustomUser, CustomUserAdmin)

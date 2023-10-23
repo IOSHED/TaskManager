@@ -10,6 +10,7 @@ This is a Django packing that provides user management functionalities. The proj
 | Django-widget-tweaks | 1.5.0   |
 | Htmx                 | 1.9.6   |
 | Bootstrap            | 5.0.2   |
+| Pillow               | 10.1.0  |
 
 
 ## Installation
@@ -39,19 +40,20 @@ python manage.py runserver
 
 The project includes the following URL patterns:
 
-| Url                             | Name                    | available HTTP requests | description                                                           |
-|---------------------------------|-------------------------|-------------------------|-----------------------------------------------------------------------|
-| ```create-user/```              | create-user             | GET, POST               | Creates a new user.                                                   |
-| ```create-info-user/<int:pk>``` | create-info-user        | GET, POST               | Creates additional information for a user with the given primary key. |
-| ```login-user/```               | login-user              | GET, POST               | Logs in a user.                                                       |
-| ```logout-user/```              | logout-user             | GET                     | Logs out the current user.                                            |
-| ```delete-user/```              | delete-user             | POST                    | Deletes the current user.                                             |
-| ```update-user/```              | update-user             | GET, POST               | Updates the current user's information.                               |
-| ```check-email/```              | check-email             | POST                    | Checks if there is already such a registered email.                   |
-| ```check-password/```           | check-password          | POST                    | Checks if a password meets the requirements.                          |
-| ```check-re-password/```        | check-check-re-password | POST                    | Checks if a password and its confirmation match.                      |
-| ```check-have-email/```         | check-have-email        | POST                    | Checks if a user with such an email exists.                           |
-| ```check-login-user/```         | check-login-user        | POST                    | Checks whether such a user exists with such a email and password.     |
+| Url                             | Name                    | available HTTP requests | description                                                             |
+|---------------------------------|-------------------------|-------------------------|-------------------------------------------------------------------------|
+| ```create-user/```              | create-user             | GET, POST               | Creates a new user.                                                     |
+| ```create-info-user/<int:pk>``` | create-info-user        | GET, POST               | Creates additional information for a user with the given primary key.   |
+| ```login-user/```               | login-user              | GET, POST               | Logs in a user.                                                         |
+| ```logout-user/```              | logout-user             | GET                     | Logs out the current user.                                              |
+| ```delete-user/```              | delete-user             | POST                    | Deletes the current user.                                               |
+| ```update-user/```              | update-user             | GET, POST               | Updates the current user's information.                                 |
+| ```load-icon```                 | load-icon               | POST                    | Loads a 64x64 image, and then saves two versions of it 64x64 and 32x32  |
+| ```check-email/```              | check-email             | POST                    | Checks if there is already such a registered email.                     |
+| ```check-password/```           | check-password          | POST                    | Checks if a password meets the requirements.                            |
+| ```check-re-password/```        | check-check-re-password | POST                    | Checks if a password and its confirmation match.                        |
+| ```check-have-email/```         | check-have-email        | POST                    | Checks if a user with such an email exists.                             |
+| ```check-login-user/```         | check-login-user        | POST                    | Checks whether such a user exists with such a email and password.       |
 
 Additionally, the CustomUser model extends Django's AbstractBaseUser and includes fields for name, surname, birthday, creation date, update date, active status, staff status, superuser status, and email verification status.
 

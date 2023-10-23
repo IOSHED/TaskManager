@@ -1,3 +1,4 @@
+from PIL import Image as PILImage
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
@@ -5,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import FormView, UpdateView
 
-from ..forms import CustomUserCreationForm, CustomAuthenticationForm, InfoUserForm, UpdateUserForm
+from ..forms import CustomUserCreationForm, CustomAuthenticationForm, InfoUserForm, UpdateUserForm, LoadImageForm
 from ..models import CustomUser
 
 
@@ -14,7 +15,6 @@ class CreateUserView(FormView):
     template_name = 'accounts/registration/register.html'
 
     def form_valid(self, form):
-
         user = form.save(commit=False)
         user.is_email_verification = False
         user.save()
@@ -77,3 +77,12 @@ class UpdateUserView(UpdateView):
     def form_valid(self, form):
         form.save()
         return redirect('ditail-user', pk=self.request.user.id, permanent=True)
+
+
+class LoadImage(FormView):
+    form_class = LoadImageForm
+
+    def form_valid(self, form):
+        img = PILImage.open(form.cleaned_data['icon64'])
+        form.cleaned_data['icon32'] = img.resize((32, 32))
+        form.save()

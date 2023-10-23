@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import CreateUserView, LoginUserView, CheckEmailView, CheckPasswordView, CheckRePasswordView, \
-    CreateInfoUserView, LogoutUserView, DeleteUserView, UpdateUserView, CheckHaveEmailView, CheckLoginUser
+    CreateInfoUserView, LogoutUserView, DeleteUserView, UpdateUserView, CheckHaveEmailView, CheckLoginUser, LoadImage
 
 urlpatterns = [
     path('create-user/', CreateUserView.as_view(), name='create-user'),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('logout-user/', LogoutUserView.as_view(), name='logout-user'),
     path('delete-user/', DeleteUserView.as_view(), name='delete-user'),
     path('update-user/', UpdateUserView.as_view(), name='update-user'),
+    path('load-icon/', LoadImage.as_view(), name='load-icon')
 
 
     # TODO: add forgot password
