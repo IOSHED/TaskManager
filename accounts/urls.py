@@ -1,4 +1,7 @@
+from django.conf.urls.static import static
 from django.urls import path
+
+from task_manager import settings
 from .views import CreateUserView, LoginUserView, CheckEmailView, CheckPasswordView, CheckRePasswordView, \
     CreateInfoUserView, LogoutUserView, DeleteUserView, UpdateUserView, CheckHaveEmailView, CheckLoginUser, LoadImage
 
