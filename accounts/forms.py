@@ -34,12 +34,14 @@ class UpdateUserForm(forms.ModelForm):
 class LoadImageForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('icon64',)
+        fields = ('icon64', 'icon32')
 
     def clean_image(self):
         image = self.cleaned_data.get('icon64')
         img = PILImage.open(image)
 
-        if img.size == (64, 64):
+        expected_size_img = (64, 64)
+
+        if img.size == expected_size_img:
             return image
-        raise forms.ValidationError('Image must be 64x64')
+        return img.resize(expected_size_img)

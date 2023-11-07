@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/home" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Task Manager</span>
+                </a>
+
+                {% if user.is_authenticated %}
+                <div class="dropdown pb-4">
+                    <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="hugenerd" width="40" height="40" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">{{user.name}} {{user.surname}}</span>
+                    </a>
+                </div>
+
+                <hr>
+
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-calendar-event"></i> <span class="ms-1 d-none d-sm-inline">Calendar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-ui-checks"></i> <span class="ms-1 d-none d-sm-inline">Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-puzzle"></i> <span class="ms-1 d-none d-sm-inline">Projects</span>
+                        </a>
+                    </li>
+                </ul>
+
+                {% else %}
+                <div class="d-grid gap-2 btn-group d-flex justify-content-center">
+                  <button class="btn btn-outline-primary w-100" type="button" onclick="window.location.href = '{% url 'login-user' %}';">Login</button>
+                  <button class="btn btn-outline-primary w-100" type="button" onclick="window.location.href = '{% url 'create-user' %}';">Register</button>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+        <div class="col py-3">
+            {% if user.is_authenticated %}
+                {% block content_from_sidebar %} {% endblock %}
+            {% else %}
+
+            <div>
+                <h1 class="text-center">Откройте для себя всю мощь нашего Task Manager!</h1>
+                <h4 class="text-center mb-5">Повысьте свою продуктивность, систематизируйте задачи и контролируйте прогресс.</h4>
+
+                <p>Добро пожаловать на наш сайт, посвященный нашему уникальному инструменту – Task Manager! Мы создали его с целью помочь вам стать более продуктивными, эффективно управлять своим временем и контролировать прогресс на пути к поставленным целям.</p>
+
+                <p>Вот лишь некоторые из преимуществ, которые вы получите, зарегистрировавшись и начав пользоваться нашим Task Manager:</p>
+                <ul type="disc">
+                    <li><div class="fw-bold">Систематизация задач: </div> С нашим Task Manager вы сможете упорядочить свои задачи по приоритетам, категориям и срокам выполнения. Это поможет вам избежать путаницы и сосредоточиться на наиболее важных задачах.</li>
+                    <li><div class="fw-bold">Контроль времени: </div> Наш Task Manager поможет вам следить за временем, затраченным на выполнение задач. Вы сможете анализировать, на что вы тратите свое время, и оптимизировать свой рабочий день.</li>
+                    <li><div class="fw-bold">Мотивация: </div> С помощью Task Manager вы можете устанавливать цели и отслеживать свой прогресс, что может стать дополнительным стимулом для выполнения задач.</li>
+                </ul>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

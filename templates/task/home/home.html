@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends '../base.html' %}
 
 {% load static %}
 
@@ -6,6 +6,6 @@
 
 {% block title %} Home {% endblock %}
 
-{% block content %}
-    hello home
+{% block content_from_sidebar %}
+    content_from_sidebar
 {% endblock %}
