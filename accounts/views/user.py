@@ -49,7 +49,7 @@ class CreateInfoUserView(UpdateView):
 
     def form_valid(self, form):
         form.save()
-        return redirect('ditail-user', pk=self.request.user.id, permanent=True)
+        return redirect('home', permanent=True)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -76,7 +76,7 @@ class UpdateUserView(UpdateView):
 
     def form_valid(self, form):
         form.save()
-        return redirect('ditail-user', pk=self.request.user.id, permanent=True)
+        return redirect('home', permanent=True)
 
 
 class LoadImage(FormView):
