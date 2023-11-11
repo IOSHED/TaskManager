@@ -2,10 +2,60 @@
 
 {% load static %}
 
-{% block add_css %} <link rel="stylesheet" type="text/css" href="{% static 'base/css/style.css' %}"> {% endblock %}
+{% block add_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'base/css/style.css' %}">
+<style>
+    .settings-border::before {
+      content: "settings";
+      font-weight: bold;
+      position: absolute;
+      top: -15px;
+      left: 30%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      padding: 0 10px;
+    }
+</style>
+{% endblock %}
 
 {% block title %} Calendar {% endblock %}
 
+{% load widget_tweaks %}
+
 {% block content_from_sidebar %}
-    calendar
+    <div id="settings" class="p-1 container border border-3 border-dark rounded-1 settings-border" style="position: relative;">
+        <div class="row d-flex justify-content-center align-items-center h-80">
+
+            <form method="post"
+                  class="pb-1"
+                  hx-post="{% url 'get-calendar' %}"
+                  hx-trigger="change"
+                  hx-target="#calendar"> {% csrf_token %}
+
+                <div class="form-outline mb-2 mt-2">
+                    {% render_field form.option id="option" name="option" class="form-control" hx-get="../check-option/" hx-trigger="change" hx-target="#date" hx-swap="outerHTML" %}
+                </div>
+
+                <div id="date" class="form-outline mb-2">
+                     {% render_field form.date id="date" name="date" placeholder="Date" class="form-control" type="month" value=form.date.value %}
+                </div>
+
+                <div class="form-outline mb-1 ms-1">
+                    Display holidays: {{ form.is_display_holidays }}
+                </div>
+
+                <div class="form-outline mb-1 ms-1">
+                    Display weather: {{ form.is_display_weather }}
+                </div>
+
+                <div class="form-outline mb-1 ms-1">
+                    Display my tasks: {{ form.is_display_tasks }}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="calendar" class="">
+
+    </div>
 {% endblock %}

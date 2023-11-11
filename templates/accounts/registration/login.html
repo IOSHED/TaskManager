@@ -28,7 +28,7 @@
               <div><p id="email-error" class="text-start text-danger"></p></div>
 
               <div class="form-outline form-white">
-               {% render_field form.password hx-post="../check-password/" hx-trigger="keyup delay:1s" hx-target="#password1-error" id="password1" name="password1" placeholder="Password" type="password" autocomplete="current-password" required="True" class="form-control form-control-lg" %}
+                {% render_field form.password hx-post="../check-password/" hx-trigger="keyup delay:1s" hx-target="#password1-error" id="password1" name="password1" placeholder="Password" type="password" autocomplete="current-password" required="True" class="form-control form-control-lg" %}
               </div>
               <div><p id="password1-error" class="text-start text-danger"></p></div>
               <div><p id="login-error" class="text-start text-danger"></p></div>

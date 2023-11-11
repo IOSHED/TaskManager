@@ -83,7 +83,6 @@ class LoadImage(FormView):
     form_class = LoadImageForm
 
     def form_valid(self, form):
-
         img = PILImage.open(form.cleaned_data['icon64'])
         form.cleaned_data['icon32'] = img.resize((32, 32))
         form.save()
