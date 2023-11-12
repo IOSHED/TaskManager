@@ -6,8 +6,9 @@ from task.lib.calendar import OptionCalendarChoices
 
 class CheckOption(View):
     @staticmethod
-    def get(request):
-        option = request.GET.get('option')
+    def post(request):
+        option = request.POST.get('option')
+
         if option == OptionCalendarChoices.DAY.value:
             return HttpResponse("""
                <input type="date" name="date" class="form-control" placeholder="Date" id="date" required="">

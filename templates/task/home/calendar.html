@@ -29,11 +29,11 @@
             <form method="post"
                   class="pb-1"
                   hx-post="{% url 'get-calendar' %}"
-                  hx-trigger="change"
+                  hx-trigger="load, change"
                   hx-target="#calendar"> {% csrf_token %}
 
                 <div class="form-outline mb-2 mt-2">
-                    {% render_field form.option id="option" name="option" class="form-control" hx-get="../check-option/" hx-trigger="change" hx-target="#date" hx-swap="outerHTML" %}
+                    {% render_field form.option id="option" name="option" class="form-control" hx-post="../check-option/" hx-trigger="change" hx-target="#date" hx-swap="outerHTML" %}
                 </div>
 
                 <div id="date" class="form-outline mb-2">

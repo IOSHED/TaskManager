@@ -5,7 +5,6 @@ from django.views import View
 from django.views.generic import FormView
 
 from task.forms import SettingsCalendarForm
-from task.lib.calendar import OptionCalendarChoices
 from task.lib.filters import get_calendar
 
 
