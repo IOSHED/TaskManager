@@ -4,18 +4,7 @@
 
 {% block add_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'base/css/style.css' %}">
-<style>
-    .settings-border::before {
-      content: "settings";
-      font-weight: bold;
-      position: absolute;
-      top: -15px;
-      left: 30%;
-      transform: translateX(-50%);
-      background-color: #fff;
-      padding: 0 10px;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'calendar/css/style.css' %}">
 {% endblock %}
 
 {% block title %} Calendar {% endblock %}
@@ -23,39 +12,41 @@
 {% load widget_tweaks %}
 
 {% block content_from_sidebar %}
-    <div id="settings" class="p-1 container border border-3 border-dark rounded-1 settings-border" style="position: relative;">
-        <div class="row d-flex justify-content-center align-items-center h-80">
+<div class="calendar-page container">
+    <div class="prelude container row">
+        <div class="weather col">
+            <div class="degrees">{{ weather.degrees }}</div>
+            <div class="other-data">
+                <div class="wind-speed">{{ weather.wind_speed }}m/s</div>
+                <div class="humidity">{{ weather.humidity }}%</div>
+            </div>
+        </div>
 
-            <form method="post"
-                  class="pb-1"
-                  hx-post="{% url 'get-calendar' %}"
-                  hx-trigger="load, change"
-                  hx-target="#calendar"> {% csrf_token %}
-
-                <div class="form-outline mb-2 mt-2">
-                    {% render_field form.option id="option" name="option" class="form-control" hx-post="../check-option/" hx-trigger="change" hx-target="#date" hx-swap="outerHTML" %}
+        <div class="col">
+            <div class="day-task">
+                <div class="greeting">Today is {{ calendar.date }}:</div>
+                <div class="day-tasks">
+                    {% for task in tasks %}
+                        <div class="time">{{ task.time }} - </div>
+                        <div class="task">{{ task.name }}</div>
+                        {% if task.is_complete %}
+                            <i class="is-complete bi bi-check" style="color: #7FFF00"></i>
+                        {% else %}
+                            <i class="is-complete bi bi-x" style="color: #B22222"></i>
+                        {% endif %}
+                    {% endfor %}
                 </div>
+            </div>
 
-                <div id="date" class="form-outline mb-2">
-                     {% render_field form.date id="date" name="date" placeholder="Date" class="form-control" type="month" value=form.date.value %}
-                </div>
-
-                <div class="form-outline mb-1 ms-1">
-                    Display holidays: {{ form.is_display_holidays }}
-                </div>
-
-                <div class="form-outline mb-1 ms-1">
-                    Display weather: {{ form.is_display_weather }}
-                </div>
-
-                <div class="form-outline mb-1 ms-1">
-                    Display my tasks: {{ form.is_display_tasks }}
-                </div>
-            </form>
+            <div class="settings row">
+                <div class="my-tasks col">my tasks</div>
+                <div class="holiday col">holiday</div>
+            </div>
         </div>
     </div>
 
-    <div id="calendar" class="">
+    <div class="calendar container">
 
     </div>
+</div>
 {% endblock %}

@@ -4,9 +4,8 @@ from django.views import View
 
 from ..models import CustomUser
 
+
 # TODO: use regex in 're'
-
-
 class CheckEmailView(View):
     @staticmethod
     def post(request):

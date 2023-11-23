@@ -1,0 +1,10 @@
+.settings-border::before {
+    content: "settings";
+    font-weight: bold;
+    position: absolute;
+    top: -15px;
+    left: 30%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 0 10px;
+}
