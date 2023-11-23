@@ -8,3 +8,11 @@
     background-color: #fff;
     padding: 0 10px;
 }
+
+.color-complete {
+    color: #7FFF00
+}
+
+.color-not-complete {
+    color: #B22222
+}

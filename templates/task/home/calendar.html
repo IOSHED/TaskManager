@@ -30,9 +30,9 @@
                         <div class="time">{{ task.time }} - </div>
                         <div class="task">{{ task.name }}</div>
                         {% if task.is_complete %}
-                            <i class="is-complete bi bi-check" style="color: #7FFF00"></i>
+                            <i class="is-complete bi bi-check color-complete"></i>
                         {% else %}
-                            <i class="is-complete bi bi-x" style="color: #B22222"></i>
+                            <i class="is-complete bi bi-x color-not-complete"></i>
                         {% endif %}
                     {% endfor %}
                 </div>
