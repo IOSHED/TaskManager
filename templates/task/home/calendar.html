@@ -24,15 +24,15 @@
 
         <div class="col">
             <div class="day-task">
-                <div class="greeting">Today is {{ calendar.date }}:</div>
-                <div class="day-tasks">
+                <div class="greeting">Today is {{ calendar.short_date }}:</div>
+                <div class="day-tasks row">
                     {% for task in tasks %}
-                        <div class="time">{{ task.time }} - </div>
-                        <div class="task">{{ task.name }}</div>
+                        <div class="time col">{{ task.time }} - </div>
+                        <div class="task col">{{ task.name }}</div>
                         {% if task.is_complete %}
-                            <i class="is-complete bi bi-check color-complete"></i>
+                            <i class="is-complete col bi bi-check color-complete"></i>
                         {% else %}
-                            <i class="is-complete bi bi-x color-not-complete"></i>
+                            <i class="is-complete col bi bi-x color-not-complete"></i>
                         {% endif %}
                     {% endfor %}
                 </div>
