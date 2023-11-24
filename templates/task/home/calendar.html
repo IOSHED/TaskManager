@@ -12,9 +12,10 @@
 {% load widget_tweaks %}
 
 {% block content_from_sidebar %}
-<div class="calendar-page container">
-    <div class="prelude container row">
-        <div class="weather col">
+<div class="calendar-page container bg-secondary p-0 border-box">
+    <div class="prelude container row bg-danger p-0 m-0 mb-3" style="height: 20vh">
+
+        <div class="weather col-xs-10 col-sm-3 bg-primary text-secondary p-0 me-3">
             <div class="degrees">{{ weather.degrees }}</div>
             <div class="other-data">
                 <div class="wind-speed">{{ weather.wind_speed }}m/s</div>
@@ -22,31 +23,33 @@
             </div>
         </div>
 
-        <div class="col">
-            <div class="day-task">
+        <div class="col p-0 h-100 d-flex flex-column">
+            <div class="day-task bg-warning flex-grow-1">
                 <div class="greeting">Today is {{ calendar.short_date }}:</div>
                 <div class="day-tasks row">
                     {% for task in tasks %}
-                        <div class="time col">{{ task.time }} - </div>
-                        <div class="task col">{{ task.name }}</div>
-                        {% if task.is_complete %}
-                            <i class="is-complete col bi bi-check color-complete"></i>
-                        {% else %}
-                            <i class="is-complete col bi bi-x color-not-complete"></i>
-                        {% endif %}
+                        <div class="task row">
+                            <div class="time col">{{ task.time }} - </div>
+                            <div class="task col">{{ task.name }}</div>
+                            {% if task.is_complete %}
+                                <i class="is-complete col bi bi-check text-success"></i>
+                            {% else %}
+                                <i class="is-complete col bi bi-x text-danger"></i>
+                            {% endif %}
+                        </div>
                     {% endfor %}
                 </div>
             </div>
 
-            <div class="settings row">
-                <div class="my-tasks col">my tasks</div>
-                <div class="holiday col">holiday</div>
+            <div class="settings row bg-light p-0 m-0">
+                <div class="my-tasks col p-0">my tasks</div>
+                <div class="holiday col p-0">holiday</div>
             </div>
         </div>
     </div>
 
-    <div class="calendar container">
-
+    <div class="calendar container bg-dark">
+        my calendar
     </div>
 </div>
 {% endblock %}
